@@ -1,0 +1,171 @@
+Git Önemli, Notlar
+1)git status
+komutu ile hangi dosyaları değiştirdiğinizi, sildiğinizi veya hangi dosyaları eklediğinizi kolayca görebilirsiniz.
+2)Git clone projeyi rulden bilgisayara indirme
+3) Dosyalarınızı staging area'ya ekledikten sonra şimdi commit işlemine hazırsınız. Commit işlemi ile dosyalarınızdaki
+değişiklikler yeni bir versiyon olarak Git'de kayıt altına alınır.
+4)Local repository, kendi bilgisyarınızda proje klasörünüzün altında bulunan .git klasörüdür. Bu repository üzerinde
+sadece siz çalışabilirsiniz ve değişiklikler yerel diskinize kaydedilir.
+Remote repository'ler ise genellikle uzaktaki bir sunucuda yer alırlar ve bu sunucudaki .git klasöründen
+ibarettirler. Takım çalışması söz konusu ise takımdaki kişiler değişikliklerini bu uzaktaki repository üzerinden
+paylaşırlar.
+5)Local Proje Oluşturmak : Henüz version kontrolü altında olmayan bir projenizi versiyon kontrolü altına almak için git init komutunu kullanırız. Bu
+işlemi gerçekleştirmek için Mac OS X'de Terminal uygulamasını Windows'da ise Git Bash'i açarak aşağıdaki komutları
+çalıştırmanız gerekir
+$ cd proje/klasörünüzün/yolu/
+$ git init
+Bu işlemden sonra
+ls -la
+komutu ile proje klasörünüz altındaki dosyaları listelediğinizde klasörün içinde .git isimli gizli bir klasörün olduğunu
+göreceksiniz. git init komutu ile projemiz için boş bir repository oluşturduk. Ancak proje klasörümüzde dosyalar ve başka
+klasörler bulunmasına rağmen bu dosya ve klasörlerin hiç biri henüz Git tarafından versiyon kontrolü altına alınmadı.
+6)Working copy: Projenizin ana klasörüne Working Copy veya Working Directory ismi verilir. Bu klasörde projenizde
+yer alan dosyaların ve klasörlerin bir kopyası bulunur. Versiyon kontrol sistemine projenizin herhangi bir versiyonunu
+Working Copy'nize kopyalamasını söyleyebilirsiniz, ancak bir anda Working Copy'nizde projenizin sadece bir
+versiyonu yer alır.
+7)Git ignore : Versiyon kontrolü altına almak istemediğiniz dosya ve klasörleri tanımlamak için proje klasörüne eklenen .gitignore dosyası
+kullanılır. Bu dosya'ya göz ardı etmek istediğiniz dosya ve klasörlerin tespit edilebilmesi için doğrudan isimler veya basit
+kurallar ekleriz. Projelerinizi versiyon kontrolü altına aldıktan sonra ilk iş olarak GitHub'in yayınladığı derlemeyi veya kendi
+deneyiminiz ve bilginiz ile karar vereceğiniz dosya ve klasörleri .gitignore dosyasına ekleyiniz. Projenizin ilerleyen
+aşamalarında bu işlemi yapmanız biraz daha zahmetli olacaktır.
+8)İlk Kommit Projemizi versiyon kontrolüne alıp göz ardı edilmesini istediğimiz klasör ve dosyaları da belirledikten sonra aşağıdaki
+komutlar ile ilk commit işlemimizi yapabiliriz
+$ git add -A
+$ git commit -m "İlk commit işlemimizi yaptık"
+Bu komutların ne işe yaradığına sonraki bölümlerde değineceğiz, şimdilik
+İlk komutun tüm proje dosyalarının Staging Area'ya eklenmesi için,
+İkinci komutun ise dosyalarımızın bir açıklama ile commit edilmesi için kullanıldığını söylemek ile yetinelim.
+9)Remote proje Git ile versiyon kontrolü yapılan bir projeye dahil olduğunuzda size verilecek ilk bilgiler projenin Git adresi (URL) ve projeye
+erişim için kullanacağınız kullanıcı adı ve şifrenizdir. Uzaktaki bir repository'nin (URL) adresi aşağıdaki formatlardan birinde
+olacaktır
+10)Dosya Durumları: Git'de dosyalarınız genel olarak iki durumda olabilir
+Untracked (Takip Edilmeyen): Bu dosyalar versiyon kontrolü altında olmayan veya sizin henüz versiyon kontrolü
+yapmak için git'e eklemediğiniz dosyalardır. Bu dosyalardaki değişiklikler siz dosyaları git'e eklemediğiniz sürece
+versiyon kontrolüne tabi değildir
+Tracked (Takip Edilen): Bu dosyalar ise git'in versiyon kontrolü takibi altında olan dosyalardır. Bu dosyalar üzerinde
+yapacağınız tüm değişiklikler git tarafından takip edilmektedir.
+11)Yapılan Değişiklikleri Listelemek: git status
+12)Git add ve git rm => Bir öncelki başlıkta değindiğimiz ve git status komutu sonrasında git'in bize özetlediği 3 gruptan son ikisinde yer alan
+dosyaların ilk gruba dahil edilmesi için git add ve git rm komutlarını kullanabiliriz.
+Aşağıda oluşturduğumuz git add komutu ile baslik_2.md ve baslik_2_1.md dosyaları ile resimler klasörü aştındaki tüm
+dosyaların Staging Area'ya eklenmesini sağlayabiliriz.
+$ git add baslik_2.md baslik_2_1.md resimler/*
+Benzer şekilde aşağıdaki git rm komutu ile ornek2.md dosyasının bir sonraki commitimiz'de yer almayacağını belirtebiliriz.
+$ git rm ornek2.md
+13)Git commit message $ git commit -m "1.7 numaralı alt başlık içeriği tamamlandı"
+14)Branch Branchler git'in en güçlü özelliklerinden birisidir. Hızlı ve kullanımı kolay branching mekanizması git'in tasarımında ilk
+gününden itibaren ciddi bir gereksinim olarak ele alınmıştır. Branch'ler farklı bağlamlarda çalışmaktan
+kaynaklanabilecek karmaşanın önüne geçmek için biçilmiş kaftandır. Branch'leri bug fix'ler, yeni özellikler üzerinde
+çalışmak veya deneysel özellikleri geliştirmek için bol bol kullanın
+15)Git Branchları listeleme  kodu :git branch not: Herhangi bir anda yaptığınız değişiklikler sadece aktif olarak üzerinde çalıştığınız branch'e (dal) yansıyacak diğer branchler
+bu değişikliklerden etkilenmeyecektir. Böylece aynı anda birden fazla branch üzerinde özgürce çalışabilirsiniz ve en
+önemlisi de bu çalışmalarınızdan bir kısmının çöpe dönmesinden çekinmeden denemelerinizi yapabilirsiniz.
+16)Git stash: Tam anlamıyla bitirmediğiniz ve test etmediğiniz bir değişikliği asla commit etmeyin. Üzerinde çalışacağınız
+değişiklikleri planlarken bu değişiklikleri mümkün olduğunca küçük parçalar halinde ele almaya özen gösterirseniz
+yağtığınız değişiklikleri kayıt altına almak için henüz tamamlanmamış değişiklikleri commit etmek zorunda kalmazsınız.
+Buna rağmen ara safhada kayıt altına almak istediğiniz değişikliker olursa Git'in Stash özelliğini kullanabilirsiniz. Değişiklikleri geçiçi olarak kaydeder.
+17:Geçiçi olarak kayıt altına alınan değişikleri listelemek için kodumuz: git stash list
+18)Önemli  Stash'de yer alan bir
+değişikliği geri yüklemek istediğinizde iki seçeneğiniz var
+git stash pop komutu ile yukarıdaki listenin en üstünde yer alan değişiklik geri yüklenecek ve bu değişiklik listeden
+silinecek.
+Değişikliklerinizi Geçici Olarak Kaydetmek -> Git Stash
+git stash apply komutu ile istediğiniz değişikliği geri yükleyebilirsiniz. Ancak bu işlem sonrasında yüklediğiniz
+değişiklik listeden silinmeyecek. Herhangi bir değişikliği listeden silmek için git stash drop komutunu kullanabilirsiniz.
+19)Stash Nerelerde kullanılır? Stash işlemini üzerinde çalıştığımız aktif branch'imizi temiz bir duruma getirmek için kullanabiliriz. Bunun dışında aşağıdaki
+durumlarda da Git'in Stash özelliğini kullanabilirsiniz
+Farklı bir branch'i aktif hale getirmeden önce
+Remote Repository değişikliklerinizi yerel diskinize indirmeden önce
+Branch'inizi merge etmeden önce
+20)Branching Önemli : Gelin şimdi hep birlikte günlük çalışmanız sırasında kullanabileceğiniz basit bir branching akışını ele alalım. Çalışma
+senaryomuzun şöyle geliştiğini düşünelim
+a. Bir web sitesi üzerinde çalışmaya başladınız
+b. Bu siteye yeni bir özellik eklemek için bir branch oluşturdunuz
+c. Bu yeni branch üzerinden değişikliklerinizi yapmaya başladınız
+Bu sırada web sitesinde bir güvenlik açığı tespit edildiğini bildiren bir email aldınız. Acil olarak bu güvenlik açığını
+gidermeniz için yapmakta olduğunuz çalışmayı bırakmanız ve bu durumu düzeltmeniz gerekiyor.Böyle bir durumda
+aşağıdaki adımları takip edebilirsiniz
+d. Aktif branch'inizi web sitenizin son stabil versiyonun bulunduğu master branch olarak değiştirdiniz
+git checkout master komutunu kullandık
+f. Güvenlik açığını giderme çalışmanız için yeni bir branch oluşturdunuz.
+git branch loginsorunu koutunu kullanarak branch oluşturduk ve
+git checkout loginsorunu komutu ile bu branch'i aktif > hale getirdik
+x. Güvenlik açığını giderecek değişikliği tamamladınız, testlerinizi yaptınız ve bu değişikliği Staging Area'ya ekleyip
+sonrasında da commit ettiniz
+git add login.xyz login.html login.css ile değişiklikleri Staging Area'ya gönderdik
+git commit -m "Özel karakter içeren kullanıcı adlarında ortaya çıkan güvenlik sorunu giderildi" ile
+değişikliklerimizi commit ettik.
+g. master branchimizi aktif hale getirdik
+git checkout master komutu ile
+h. Commit ettiğiniz değişikliği web sitenizin stabil versiyonunu içieren master branchimize merge ettik.
+git merge loginsorunu
+ı. Daha önce üstünde çalışmakta olduğunuz yeni özellik ile ilgili değişiklikleri içeren branch'inizi aktif hale getirerek
+çalışmanıza kaldığınız yerden devam edebilirsiniz.
+git checkout yeniozellik_xyz komutu ile
+
+21)Checkout,head ve working copy:Git'de bir branch otomatik olarak o branch için yaptığınız son commit işlemine bir işaretçi tutar ve hangi dosyaların o
+branch'e ait olduğunu bilir. Herhangi bir anda bir proje için tek bir branch aktif olabilir. Bu branch'e HEAD denir ve Working
+Copy içindeki (Working Copy'yi projenizin yerel diskinizdeki dosyalarının tamamı olarak düşünebilirsiniz) dosyalar aktif olan
+branch'e yani HEAD'e aittir. Diğer branchlerinizdeki dosyalar disikiniz üzerinde değil Git'in veritabanında (.git klasörü için
+özel bir formatta) bulunur.
+Farklı bir branch'i aktif hale getirmek için git checkout komutu kullanılır. Bu durumda Git otomatik olarak sizin için iki şey
+yapar
+1. Aktif hale getirdiğiniz branch'i HEAD yapar ve
+2. Aktif hale getirdiğiniz branch'e ait dosyaları Git veritabanınızdan yerel diskinize kopyalar ve önceki branch'e ait
+dosyaları diskinizden kaldırır. Yani Working Copy'nize yeni branch'e ait olan dosyaları koyar.
+22)Merge:Merging en basit anlamda
+herhangi bir brach'de yaptığımız değişiklikleri master branch'imiz ile birleştirme veya master branch'e entegre etme
+işlemidir.
+23)Merge işlemleri:Git'de merge işlemi çok basit iki adımda yapılır.
+1. git checkout komutu ile değişikliklerin aktarılacağı hedef branch'inizi aktif (HEAD) hale getirirsiniz.
+2. git merge komutu ile kaynak branch'deki commit edilmiş değişiklikleri HEAD'e entegre edilir
+Merge işleminden sonra git log komutunu çalıştırdığınızda ise hangi değişikliklerimizin (commit) master branch'imize
+entegre edildiğini (merge) kolayca görebilirsiniz.
+24)Pull verileri çekme repoyu daki değişikleri çekme,push yapılan değişiklikleri gite gönderme addsync çeneğini seciyoruz pukl and push sync
+25)Repository oluşturma Boş bir repository olarak sıfırdan git init komutu ile oluşturabilirsiniz veya
+Remote bir repository'yi git clone komutu ile yerel diskinizde indirebilirsiniz.
+26)Önemli Remote bir repository'yi yerel diskinize git clone komutu ile indirdiğinizde Git otomatik olarak bu işlemi yapmak için
+kullandığınız bağlantı bilgilerini hatırlar. Git bu bilgi'yi varsayılan olarak origin adı verilen remote bir repository olarak kayıt
+altına alır.
+27)Remote repositorydeki bilgilerin incelenmesi:git clone komutu remote bir repository'yi yerel diskimize indirdikten sonra git branch -va komutunu çalıştırdığımızda
+aşağıdaki görüntüde yer alan bilgiler listelenecektir
+28)Önemli git checkout --track komutu ile aşağıdaki işlemler gerçekleşir
+a. Remote branch ile aynı isimde local bir branch oluşturulur
+b. Yeni oluşturulan branch aktif hale getirilir
+c. --tracking parametresini kullandığımız için yeni oluşan local branch ile remote branch arasında "tracking relationship"
+adı verilen ve local branch'in hangi remote branch'deki değişiklikleri takip ettiğini gösteren ilişki kurulur
+29)Önemli git fetch : remote'dan güncelleme bilgilerini indir
+git diff : remote ve local arasındaki farkları incele
+git merge : değişiklikleri otomatik merge et çakışma varsa bir sonraki adıma geçin
+Çakışma olan dosyalarınızı açın ve çakışmaları düzeltin
+git add: çakışmanın giderildi ve değişiiklik Staging Area'ya alındı
+30)Branchleri silmek:Bu branch'i kendi
+bilgisayarımızdan silmek için git branch -d superyeniozellik komutunu, remote repository'den silmek için de git branch -
+dr superyeniozellik komutunu kullanabiliriz.
+31)Rebase:Bazı takımlar iki branch'i yukarıda anlattığımız otomatik merge commit'ler yerine rebase ile entegre etmeyi tercih edebilir.
+Rebase sonrasında projenizin iki farklı branch'i olduğuna dair herhangib bir tarihsel iz oluşmaz.
+Gelin şimdi rebase işleminin nasıl yapıldığına bakalım. Örnek senaryomuzda Branch-B'deki değişiklikleri Branch-A'ya
+entegre edeceğiz Rebase işlemini git rebase komutunu aşağıdaki gibi kullanarak yapıyoruz.
+$ git rebase Branch-B
+Bu komut ile Git öncelikle Branch-A ile Branch-B'nin ortak en son commit'ini bulup ortak commit sonrasında Branch-A'da
+yapılan diğer tüm commit'leri geri alır. Aslında bu commitler silinmez sadece geçici olarak farklı bir yerde saklanır. Daha
+sonra Branch-B'deki tüm commitler Branch-A'ya uygulanır. Son aşamada ise Branch-A'nın geçici olarak farklı bir yerde
+saklanan commit'leri tekrar uygulanır. Bu işlemler sonrasında tüm değişiklikler sanki sadece Branch-A üzerinde
+gerçekleşmiş gibi görünür.
+32)Merge işlemini geri akmak: Dosyanızın merge işlemine başlamadan önceki haline istediğiniz zaman geri dönebilirsiniz. Bunun için yapmanız gereken
+tek şey git merge --abort komutunu çalıştırmak.
+33)İki faarklı branchi karşılaştırmak : İki farklı branch'in arasındaki içerik farklarını görmek için git diff komutuna karşılaştırmak istediğiniz branch isimlerini
+paremetre olarak verebilirsiniz. Örneğin master ile superyeniozellik branch'ini karşılaştırmak için git diff komutu aşağıdaki
+gibi oalcaktır
+$ git diff master..superyeniozellik
+
+34)Commit edilen dosyalrdaki farkları görmek:git log komutunu commit işlemleri ile ilgili özet bilgileri görmek için kullanabiliriz. Bu komutu herhangi bir parametre veya
+seçenek belirtmeden kullanırsanız dosya içeriğindeki farkları göremezsiniz. Dosyaların içeriğindeki farkları da görmek için
+git log komutunu -p seçeneği ile kullanabilirsiniz.
+$ git log -p şeklinde
+35)Commit mesajları:Commit işlemlerinizi ne kadar dikkatli yaparsanız yapın bazen commit'e dahil etmeyi unuttuğunuz veya yanlışlıkla dahil
+ettiğiniz dosyalar olabilir veya commit mesajında eksik bilgi vermiş olabilirsiniz. Bu durumda son commit işleminizi yeniden
+yapmak için git commit komutunu --amend seçeneği ile kullanabilirsiniz. Sadece commit mesajınızı değiştirmek
+istiyorsanız -- amend -m seçenekleri ile git commit komutunu çalıştırabilirsiniz, eğer son commit'e dosya eklemek veya
+dosya çıkarmak isterseniz commit komutundan önce önceki bölümlerde de bahsettiğimiz git add ve git rm komutları ile
+önce Staging işlemini yapabilirsiniz.
